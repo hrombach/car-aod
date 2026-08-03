@@ -11,10 +11,20 @@ import AVFAudio
 struct DiagnosticsView: View {
     @State private var outputs: [String] = []
     
+    @AppStorage("carBluetoothName") private var carBluetoothName: String = ""
+    
     var body: some View {
-        List(outputs, id: \.self) { Text($0) }
-            .onAppear(perform: refresh)
-            .refreshable { refresh() }
+        List {
+            Section("Detected Audio Outputs") {
+                ForEach(outputs, id: \.self) { Text($0) }
+            }
+            
+            Section("Car Bluetooth Name") {
+                TextField("e.g. Tesla Model Y", text: $carBluetoothName)
+            }
+        }
+        .onAppear(perform: refresh)
+        .refreshable { refresh() }
     }
     
     func refresh() {
