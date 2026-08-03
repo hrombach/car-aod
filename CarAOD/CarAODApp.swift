@@ -11,7 +11,7 @@ import SwiftUI
 struct CarAODApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DiagnosticsView()
         }
     }
 }
